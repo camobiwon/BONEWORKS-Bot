@@ -12,25 +12,33 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Main {
+
+    //Initial variables
+    public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
     private static Logger logger = LogManager.getLogger(Main.class);
     public static long ownerID = 271788139381653514L;
 
-    //Print the output from the string that the user added
-    public static void logSend(String text) {
-        //Initialize date
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
+    //Time formatting
+    public static String time() {
         LocalDateTime now = LocalDateTime.now();
+        return dtf.format(now);
+    }
+
+    //Log messaging
+    public static void logSend(String text) {
         if(text == null){
-            System.out.println("[" + dtf.format(now) + "]" + "(LOG) Response Sent");
+            System.out.println("[" + time() + "]" + "(LOG) Response Sent");
         } else {
-            System.out.println("[" + dtf.format(now) + "]" + "(LOG) " + text);
+            System.out.println("[" + time() + "]" + "(LOG) " + text);
         }
     }
 
+    //Set log message to null by default
     public static void logSend() {
         logSend(null);
     }
 
+    //Main call
     public static void main(String[] args) {
         try {
             //Get token from token.txt file

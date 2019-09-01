@@ -5,8 +5,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,12 +31,9 @@ public class JSONReader {
             is.close();
         }
     }
+
     //Get release date
     public static String getRelease() throws IOException, JSONException {
-        //Initialize date
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
-        LocalDateTime now = LocalDateTime.now();
-
         JSONObject json = readJsonFromUrl("https://store.steampowered.com/api/appdetails/?appids=823500");
         String releaseDate = json.getJSONObject("823500").getJSONObject("data").getJSONObject("release_date").getString("date");
         Main.logSend("Fetched Release Date");
@@ -47,10 +42,6 @@ public class JSONReader {
 
     //Get price
     public static String getGamePrice() throws IOException, JSONException {
-        //Initialize date
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
-        LocalDateTime now = LocalDateTime.now();
-
         JSONObject json = readJsonFromUrl("https://store.steampowered.com/api/appdetails/?appids=823500");
         String gamePrice;
         if(!json.getJSONObject("823500").getJSONObject("data").isNull("price_overview")) {

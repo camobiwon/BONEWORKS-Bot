@@ -4,24 +4,18 @@ import org.javacord.api.listener.message.MessageCreateListener;
 import org.json.JSONException;
 
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Commands implements MessageCreateListener {
+
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        //Initialize date
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
-        LocalDateTime now = LocalDateTime.now();
-
         //If bot, don't respond
         if (event.getMessageAuthor().isBotUser()) return;
 
-        //Write to console if user sends message
+        //Log user sent messages
         if (!event.isPrivateMessage()) {
-            System.out.println("[" + dtf.format(now) + "]" + "(" +
+            System.out.println("[" + Main.time() + "]" + "(" +
                     event.getServer().get().getName() + " - #" +
                     event.getServerTextChannel().get().getName() + ") " +
                     event.getMessageAuthor().getName() + "#" +
@@ -44,7 +38,7 @@ public class Commands implements MessageCreateListener {
                 event.getChannel().sendMessage(":regional_indicator_c::fish:");
                 Main.logSend();
                 break;
-            /* Eventually maybe add random stuff
+            /* Eventually add randomized dates
             case "!releasedate":
                 event.getChannel().sendMessage("[REDACTED]");
                 logSend();
@@ -91,15 +85,16 @@ public class Commands implements MessageCreateListener {
                             .addInlineField("Release Date", JSONReader.getRelease())
                             .addInlineField("Game Price", JSONReader.getGamePrice())
                             .setColor(Color.BLUE);
+                            /*
+                            .setFooter("Footer", "https://cdn.discordapp.com/embed/avatars/1.png")
+                            .setImage(new File("C:/Users/Bastian/Pictures/puppy.jpg"))
+                            .setThumbnail(new File("C:/Users/Bastian/Pictures/kitten2.png"));
+                            */
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                //.setFooter("Footer", "https://cdn.discordapp.com/embed/avatars/1.png")
-                        //.setImage(new File("C:/Users/Bastian/Pictures/puppy.jpg"))
-                        //.setThumbnail(new File("C:/Users/Bastian/Pictures/kitten2.png"));
-                // Send the embed
                 event.getChannel().sendMessage(embed);
                 Main.logSend();
                 break;
