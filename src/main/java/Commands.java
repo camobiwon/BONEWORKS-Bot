@@ -7,7 +7,6 @@ import java.awt.*;
 import java.io.IOException;
 
 public class Commands implements MessageCreateListener {
-
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         //If bot, don't respond
@@ -25,6 +24,7 @@ public class Commands implements MessageCreateListener {
             );
         }
 
+
         //Custom commands
         switch (event.getMessageContent().toLowerCase()) {
             case "!shutdown":
@@ -39,12 +39,12 @@ public class Commands implements MessageCreateListener {
                 event.getChannel().sendMessage(":regional_indicator_c::fish:");
                 Main.logSend();
                 break;
-            /* Eventually add randomized dates
+            // Eventually add randomized dates, but for now, have it be the actual release date or somethin
             case "!releasedate":
-                event.getChannel().sendMessage("[REDACTED]");
+                event.getChannel().sendMessage("The current planned release date is: " + JSONReader.getRelease() + ".");
                 logSend();
                 break;
-            */
+            
             case "!melon":
                 event.getChannel().sendMessage("||f u c k i n g  i l l e g a l||");
                 Main.logSend();
