@@ -20,7 +20,8 @@ public class Commands implements MessageCreateListener {
                     event.getServerTextChannel().get().getName() + ") " +
                     event.getMessageAuthor().getName() + "#" +
                     event.getMessageAuthor().getDiscriminator().get() + ": " +
-                    event.getMessage().getContent()
+                    //If image, grab URL, if not, send message
+                    (event.getMessageAttachments().isEmpty()?event.getMessage().getContent():event.getMessageAttachments().get(0).getUrl())
             );
         }
 
