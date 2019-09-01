@@ -10,16 +10,19 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Commands implements MessageCreateListener {
+    //Print the output from the string that the user added
+    public void logSend() {
+        //Initialize date
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("[" + dtf.format(now) + "]" + "(LOG) Response sent!");
+    }
+
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         //Initialize date
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
         LocalDateTime now = LocalDateTime.now();
-
-        //Print the output from the string that the user added
-        public void logSend() {
-        	System.out.println("[" + dtf.format(now) + "]" + "(LOG) Response sent!");
-        }
 
         //If bot, don't respond
         if (event.getMessageAuthor().isBotUser()) return;
