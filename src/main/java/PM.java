@@ -20,7 +20,7 @@ public class PM implements MessageCreateListener {
                     event.getMessage().getContent()
             );
             //Send message
-            System.out.println("[" + dtf.format(now) + "]" + "(LOG) DM sent");
+            Main.logSend();
         }
     }
 }

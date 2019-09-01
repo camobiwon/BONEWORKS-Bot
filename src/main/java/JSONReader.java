@@ -41,7 +41,7 @@ public class JSONReader {
 
         JSONObject json = readJsonFromUrl("https://store.steampowered.com/api/appdetails/?appids=823500");
         String releaseDate = json.getJSONObject("823500").getJSONObject("data").getJSONObject("release_date").getString("date");
-        System.out.println("[" + dtf.format(now) + "]" + "(LOG) Fetched game release date");
+        Main.logSend("Fetched Release Date");
         return releaseDate;
     }
 
@@ -63,7 +63,7 @@ public class JSONReader {
                 gamePrice = "Not Free";
             }
         }
-        System.out.println("[" + dtf.format(now) + "]" + "(LOG) Fetched game price");
+        Main.logSend("Fetched Game Price");
         return gamePrice;
     }
 }
