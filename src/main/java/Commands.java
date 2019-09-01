@@ -41,8 +41,14 @@ public class Commands implements MessageCreateListener {
                 break;
             // Eventually add randomized dates, but for now, have it be the actual release date or somethin
             case "!releasedate":
-                event.getChannel().sendMessage("The current planned release date is: " + JSONReader.getRelease() + ".");
-                logSend();
+                try {
+                    event.getChannel().sendMessage("The current planned release date is: " + JSONReader.getRelease());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Main.logSend();
                 break;
             
             case "!melon":

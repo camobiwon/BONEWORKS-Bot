@@ -47,7 +47,7 @@ public class Main {
 
             //Go online
             DiscordApi api = new DiscordApiBuilder().setToken(token).login().join();
-            System.out.println("\nStartup successful! Bot should now be online");
+            System.out.println("Startup successful! Bot should now be online");
             System.out.println("=====[ CONSOLE OUTPUT ]=====");
 
             FallbackLoggerConfiguration.setDebug(true);
