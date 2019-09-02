@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -20,7 +19,6 @@ public class Main {
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
     private static Logger logger = LogManager.getLogger(Main.class);
     public static List<Long> adminIDs = new ArrayList<>();
-    //public static long ownerID = 271788139381653514L;
 
     //Time formatting
     public static String time() {
@@ -28,6 +26,7 @@ public class Main {
         return dtf.format(now);
     }
 
+    //Get admins from admin.txt file
     private static void getAdmins() {
         String admins;
         try {
@@ -75,7 +74,6 @@ public class Main {
 
             //Listeners
             api.addMessageCreateListener(new Commands());
-            api.addMessageCreateListener(new PM());
 
             //Console output if bot joins / leaves server
             api.addServerJoinListener(event -> logger.info("Joined server " + event.getServer().getName()));
