@@ -34,6 +34,13 @@ public class Commands implements MessageCreateListener {
                 } else {
                     event.getChannel().sendMessage("<:AlexNo:617150461127950357>");
                 }
+                Main.logSend();
+                try {
+                    Thread.sleep(5000);
+                    System.exit(0);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 break;
             case "!alex":
                 event.getChannel().sendMessage(":regional_indicator_c::fish:");
