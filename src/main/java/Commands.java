@@ -32,7 +32,6 @@ public class Commands implements MessageCreateListener {
             );
         }
 
-
         //Custom commands
         switch (event.getMessageContent().toLowerCase()) {
             case "!shutdown":
