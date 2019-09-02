@@ -29,12 +29,13 @@ public class Commands implements MessageCreateListener {
         switch (event.getMessageContent().toLowerCase()) {
             case "!shutdown":
                 if (Main.adminIDs.contains((event.getMessageAuthor().getId()))) {
-                    event.getChannel().sendMessage("`Shutting down...`");
+                    event.getChannel().sendMessage("`Shutting Down...`");
+                    Main.logSend("Bot Shutting Down");
                     event.getApi().disconnect();
                 } else {
                     event.getChannel().sendMessage("<:AlexNo:617150461127950357>");
+                    Main.logSend();
                 }
-                Main.logSend();
                 try {
                     Thread.sleep(5000);
                     System.exit(0);
