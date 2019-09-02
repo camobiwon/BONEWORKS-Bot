@@ -6,22 +6,40 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     //Initial variables
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
     private static Logger logger = LogManager.getLogger(Main.class);
-    public static long ownerID = 271788139381653514L;
+    public static List<Long> adminIDs = new ArrayList<>();
+    //public static long ownerID = 271788139381653514L;
 
     //Time formatting
     public static String time() {
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
+    }
+
+    private static void getAdmins() {
+        String admins;
+        try {
+            admins = new String(Files.readAllBytes(Paths.get("admins.txt")));
+            String[] admin = admins.split(",");
+            for (String parseLong: admin) {
+                adminIDs.add(Long.parseLong(parseLong));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("admins.txt file not found / unreadable! (Make sure it's in same directory)");
+        }
     }
 
     //Log messaging
@@ -44,6 +62,9 @@ public class Main {
             //Get token from token.txt file
             String token;
             token = new String(Files.readAllBytes(Paths.get("token.txt")));
+
+            //Grab admin list
+            getAdmins();
 
             //Go online
             DiscordApi api = new DiscordApiBuilder().setToken(token).login().join();

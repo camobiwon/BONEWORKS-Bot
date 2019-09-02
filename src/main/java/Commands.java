@@ -28,7 +28,7 @@ public class Commands implements MessageCreateListener {
         //Custom commands
         switch (event.getMessageContent().toLowerCase()) {
             case "!shutdown":
-                if (event.getMessageAuthor().getId() == Main.ownerID) {
+                if (Main.adminIDs.contains((event.getMessageAuthor().getId()))) {
                     event.getChannel().sendMessage("`Shutting down...`");
                     event.getApi().disconnect();
                 } else {
@@ -39,7 +39,7 @@ public class Commands implements MessageCreateListener {
                 event.getChannel().sendMessage(":regional_indicator_c::fish:");
                 Main.logSend();
                 break;
-            // Eventually add randomized dates, but for now, have it be the actual release date or somethin
+            // Eventually add randomized dates, but for now, have it be the actual release date or something
             case "!releasedate":
                 try {
                     event.getChannel().sendMessage("The current planned release date is: " + JSONReader.getRelease());
