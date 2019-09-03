@@ -2,6 +2,6 @@
 /.gradle/
 /build/
 /build/classes/java/main/
-/token.txt
+/src/main/resources/token.txt
 /log/
 /.idea/

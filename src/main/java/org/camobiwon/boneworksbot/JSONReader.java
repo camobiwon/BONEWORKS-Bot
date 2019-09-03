@@ -1,3 +1,5 @@
+package org.camobiwon.boneworksbot;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +22,7 @@ public class JSONReader {
         return sb.toString();
     }
 
+    //JSONReader
     public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
         InputStream is = new URL(url).openStream();
         try {
@@ -36,7 +39,6 @@ public class JSONReader {
     public static String getRelease() throws IOException, JSONException {
         JSONObject json = readJsonFromUrl("https://store.steampowered.com/api/appdetails/?appids=823500");
         String releaseDate = json.getJSONObject("823500").getJSONObject("data").getJSONObject("release_date").getString("date");
-        Main.logSend("Fetched Release Date");
         return releaseDate;
     }
 
@@ -54,7 +56,6 @@ public class JSONReader {
                 gamePrice = "Not Free";
             }
         }
-        Main.logSend("Fetched Game Price");
         return gamePrice;
     }
 }

@@ -1,9 +1,11 @@
+//Plugins
 plugins {
+    id 'com.github.johnrengelman.shadow' version '5.1.0'
     id 'java'
     id 'application'
 }
 
-mainClassName = 'boneworks-bot.Main'
+mainClassName = 'org.camobiwon.boneworksbot.Main'
 
 group 'discordbot'
 version '1.0-SNAPSHOT'
@@ -25,4 +27,5 @@ dependencies {
     compile "de.btobastian.sdcf4j:sdcf4j-javacord:1.0.10"
     compile group: 'org.json', name: 'json', version: '20090211'
     runtimeOnly group: 'org.apache.logging.log4j', name: 'log4j-core', version:'2.11.1'
+    compile 'com.google.guava:guava:28.1-jre'
 }
