@@ -6,4 +6,5 @@ Bot for the BONEWORKS fan Discord server
 - Add the bot to a server you own on Discord
 - Download the project, and make sure you import all required Gradle plugins
 - Add your bot's token into a file titled "token.txt", which you then put into src\main\resources
+- You can also add yours or others IDs to src\main\resources\admins.txt, just separate each with a comma
 - You should now be able to run the project and your bot should go online
