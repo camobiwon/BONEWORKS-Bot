@@ -6,18 +6,18 @@ import org.javacord.api.event.message.MessageCreateEvent;
 
 import java.awt.*;
 
-public class ChatLog {
+class ChatLog {
 
     private static DiscordApi API;
     private static Long logChannel = 618142868686635090L;
 
     //Initialize
-    public static void chatInit(DiscordApi api) {
+    static void chatInit(DiscordApi api) {
         ChatLog.API = api;
     }
 
     //Default log function
-    public static void log(MessageCreateEvent event) {
+    static void log(MessageCreateEvent event) {
         //If bot, don't respond
         if (event.getMessageAuthor().isBotUser()) return;
 
@@ -27,7 +27,7 @@ public class ChatLog {
     }
 
     //Main log function
-    public static void log(MessageCreateEvent event, String message) {
+    static void log(MessageCreateEvent event, String message) {
         logConsole(message);
         logCommand(event, message);
     }
@@ -63,10 +63,10 @@ public class ChatLog {
         //Grab user message
         if (!event.isPrivateMessage()) {
             EmbedBuilder embed = new EmbedBuilder()
-                    .setTitle(event.getServer().get().getName())
-                    .setDescription("#" + event.getServerTextChannel().get().getName())
+                    .setTitle("#" + event.getServerTextChannel().get().getName())
+                    .setDescription(Main.time() + " | PST")
                     .setAuthor(event.getMessageAuthor().getName() + "#" + event.getMessageAuthor().getDiscriminator().get(), "", event.getMessageAuthor().getAvatar())
-                    .setColor(Color.BLUE)
+                    .setColor(Color.GRAY)
                     .setFooter(event.getMessageContent(), "");
             event.getApi().getTextChannelById(logChannel).get().sendMessage(embed);
         }
@@ -74,10 +74,10 @@ public class ChatLog {
         //Bot response message
         if (!event.isPrivateMessage()) {
             EmbedBuilder embed = new EmbedBuilder()
-                    .setTitle(event.getServer().get().getName())
-                    .setDescription("#" + event.getServerTextChannel().get().getName())
+                    .setTitle("#" + event.getServerTextChannel().get().getName())
+                    .setDescription(Main.time() + " | PST")
                     .setAuthor("Bot Response", "", API.getYourself().getAvatar())
-                    .setColor(Color.ORANGE)
+                    .setColor(Color.BLUE)
                     .setFooter(message, "");
             event.getApi().getTextChannelById(logChannel).get().sendMessage(embed);
         }
@@ -93,8 +93,8 @@ public class ChatLog {
 
         //Bot log messages
         EmbedBuilder embed = new EmbedBuilder()
-                .setTitle(Main.getServer().getName())
-                .setDescription(message)
+                .setTitle(message)
+                .setDescription(Main.time() + " | PST")
                 .setAuthor("Bot Log", "", API.getYourself().getAvatar())
                 .setColor(Color.ORANGE);
         Main.getServer().getTextChannelById(logChannel).get().sendMessage(embed);

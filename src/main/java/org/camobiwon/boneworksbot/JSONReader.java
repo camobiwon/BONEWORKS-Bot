@@ -6,12 +6,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class JSONReader {
+class JSONReader {
 
     private static String readAll(Reader rd) throws IOException {
         StringBuilder sb = new StringBuilder();
@@ -23,28 +23,23 @@ public class JSONReader {
     }
 
     //JSONReader
-    public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-        InputStream is = new URL(url).openStream();
-        try {
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+    private static JSONObject readJsonFromUrl() throws IOException, JSONException {
+        try (InputStream is = new URL("https://store.steampowered.com/api/appdetails/?appids=823500").openStream()) {
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8));
             String jsonText = readAll(rd);
-            JSONObject json = new JSONObject(jsonText);
-            return json;
-        } finally {
-            is.close();
+            return new JSONObject(jsonText);
         }
     }
 
     //Get release date
-    public static String getRelease() throws IOException, JSONException {
-        JSONObject json = readJsonFromUrl("https://store.steampowered.com/api/appdetails/?appids=823500");
-        String releaseDate = json.getJSONObject("823500").getJSONObject("data").getJSONObject("release_date").getString("date");
-        return releaseDate;
+    static String getRelease() throws IOException, JSONException {
+        JSONObject json = readJsonFromUrl();
+        return json.getJSONObject("823500").getJSONObject("data").getJSONObject("release_date").getString("date");
     }
 
     //Get price
-    public static String getGamePrice() throws IOException, JSONException {
-        JSONObject json = readJsonFromUrl("https://store.steampowered.com/api/appdetails/?appids=823500");
+    static String getGamePrice() throws IOException, JSONException {
+        JSONObject json = readJsonFromUrl();
         String gamePrice;
         if(!json.getJSONObject("823500").getJSONObject("data").isNull("price_overview")) {
             gamePrice = json.getJSONObject("823500").getJSONObject("data").getJSONObject("price_overview").getString("final_formatted");

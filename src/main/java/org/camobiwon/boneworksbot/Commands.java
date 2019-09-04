@@ -7,10 +7,11 @@ import org.json.JSONException;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 public class Commands implements MessageCreateListener {
 
-    //Admin commands
+    //Check if user is admin
     private boolean isAdmin(MessageCreateEvent event) {
         boolean isAdmin = Main.adminIDs.contains((event.getMessageAuthor().getId()));
         if (!isAdmin) {
@@ -45,10 +46,25 @@ public class Commands implements MessageCreateListener {
         }
 
         //Contains
-        if (event.getMessageContent().toLowerCase().contains("bone work")) {
-            event.getChannel().sendMessage("bone work");
-            ChatLog.log(event);
+        String messageContent = event.getMessageContent().toLowerCase();
+        if (messageContent.contains("bone work") || messageContent.contains("bonework")) {
+            try {
+                event.getMessage().addReaction(":BONEWORK:584986092990758914").get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+            ChatLog.log(event, "Reaction Added");
         }
+
+        if (event.getMessageContent().toLowerCase().contains("tech demo")) {
+            try {
+                event.getMessage().addReaction(":TechDemo:610603749823741963").get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+            ChatLog.log(event, "Reaction Added");
+        }
+
 
         //Custom commands
         switch (event.getMessageContent().toLowerCase()) {
@@ -56,7 +72,13 @@ public class Commands implements MessageCreateListener {
             case "!shutdown":
                 if(isAdmin(event)) {
                     event.getChannel().sendMessage("`Shutting Down...`");
-                    ChatLog.log(event, "Bot Shutting Down");
+                    ChatLog.logConsole("Bot Shutting Down");
+                    ChatLog.logMessage("Bot Shutting Down");
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     event.getApi().disconnect();
 
                     try {
@@ -89,12 +111,6 @@ public class Commands implements MessageCreateListener {
             case "!melon":
                 event.getChannel().sendMessage("||f u c k i n g  i l l e g a l||");
                 ChatLog.log(event);
-                break;
-
-            case "!techdemo":
-                event.getChannel().sendMessage("<:NotTechDemo:610603749823741963>");
-                ChatLog.log(event);
-                break;
 
             case "bonework bad":
                 event.getChannel().sendMessage("What the fuck did you just say about the greatest VR game of this century, you little crablet? I'll have you know I lead the MythOS PVP leaderboard, I've been involved in numerous Voidway duplication schemes, and I have over 300 confirmed nullbodies taken down. I am trained in VR physics warfare and I'm the top virtual grip sniper in the entirety of BONEWORKS. You are nothing to me but another crablet. I will wipe you the fuck out with the precision the likes of which has never been seen before on this dimensional plane, mark my fucking words. You think you can get away with saying that shit to us over the BONEWORKS Fan Discord? Think again, fucker. As we speak I am contacting the MythOS Police, and your positional coordinates are being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little you call your opinion. You're fucking dead, kid. I can relocate anywhere, anytime, and I can kill you with over seven hundred different physics objects, and that just in the first stage. Not only am I extensively trained in VR fists combat, but I have access to the entire arsenal of MythOS and I will use it to its full extend to unleash a fucking cryptid to wipe your miserable opinion off the face of this reality, you little shit. If only you could have know what justified anger your little 'clever' opinion was about to bring down upon you, maybe you would have held your fucking wireframe tongue. But you couldn't, you didn't, and now you're paying the price, you goddamn melon-eater. I will sever your connection to the real world and you'll remain a VR Junkie forever. You're fucking dead, kiddo.");
@@ -109,11 +125,6 @@ public class Commands implements MessageCreateListener {
 
             case "!adamdev":
                 event.getChannel().sendMessage("method(method)");
-                ChatLog.log(event);
-                break;
-
-            case "!tag":
-                event.getChannel().sendMessage("alexfolder.zip");
                 ChatLog.log(event);
                 break;
 

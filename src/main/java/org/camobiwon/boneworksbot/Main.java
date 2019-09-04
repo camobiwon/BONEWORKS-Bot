@@ -8,12 +8,7 @@ import org.javacord.api.util.logging.FallbackLoggerConfiguration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -24,13 +19,12 @@ public class Main {
     //Variables
     private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
     private static Logger logger = LogManager.getLogger(Main.class);
-    public static List<Long> adminIDs = new ArrayList<>();
-    private static Long serverID = 563139253542846474L;
+    static List<Long> adminIDs = new ArrayList<>();
     private static DiscordApi api;
     private static ResourceLoader resourceLoader;
 
     //Time formatting
-    public static String time() {
+    static String time() {
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
     }
@@ -51,7 +45,8 @@ public class Main {
     }
 
     //Get server ID
-    public static Server getServer() {
+    static Server getServer() {
+        long serverID = 563139253542846474L;
         return api.getServerById(serverID).get();
     }
 
