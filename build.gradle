@@ -7,7 +7,7 @@ plugins {
 
 mainClassName = 'org.camobiwon.boneworksbot.Main'
 
-group 'discordbot'
+group 'org.camobiwon'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8

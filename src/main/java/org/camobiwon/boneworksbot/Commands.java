@@ -33,7 +33,7 @@ public class Commands implements MessageCreateListener {
                     event.getServerTextChannel().get().getName() + ") " +
                     event.getMessageAuthor().getName() + "#" +
                     event.getMessageAuthor().getDiscriminator().get() + ": " +
-                    //If image, grab URL, if not, send message
+                    //If file, grab URL, if not, send message
                     (event.getMessageAttachments().isEmpty()?event.getMessage().getContent():"<FILE> " + event.getMessageAttachments().get(0).getUrl())
             );
         } else {
@@ -46,8 +46,7 @@ public class Commands implements MessageCreateListener {
         }
 
         //Contains
-        String messageContent = event.getMessageContent().toLowerCase();
-        if (messageContent.contains("bone work") || messageContent.contains("bonework")) {
+        if (event.getMessageContent().toLowerCase().contains("bone work")) {
             try {
                 event.getMessage().addReaction(":BONEWORK:584986092990758914").get();
             } catch (InterruptedException | ExecutionException e) {
