@@ -33,7 +33,7 @@ class ChatLog {
     }
 
     //Log messaging
-    public static void logConsole(String text) {
+    static void logConsole(String text) {
         if(text == null || text.isEmpty()){
             System.out.println("[" + Main.time() + "]" + "(LOG) Response Sent");
         } else {
@@ -84,7 +84,7 @@ class ChatLog {
     }
 
     //Respond in Discord chat with logged message
-    public static void logMessage(String message) {
+    static void logMessage(String message) {
 
         //Return if empty
         if (message == null || message.isEmpty()) {

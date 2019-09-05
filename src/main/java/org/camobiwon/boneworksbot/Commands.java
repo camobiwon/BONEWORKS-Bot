@@ -105,7 +105,6 @@ public class Commands implements MessageCreateListener {
                     e.printStackTrace();
                 }
                 ChatLog.log(event);
-
                 break;
             
             case "!melon":
