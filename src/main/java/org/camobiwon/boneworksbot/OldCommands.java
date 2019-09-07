@@ -1,6 +1,5 @@
 package org.camobiwon.boneworksbot;
 
-import org.javacord.api.DiscordApi;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
@@ -8,7 +7,6 @@ import org.json.JSONException;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.concurrent.ExecutionException;
 
 public class OldCommands implements MessageCreateListener {
 
