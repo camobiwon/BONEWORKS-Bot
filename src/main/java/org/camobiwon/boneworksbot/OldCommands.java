@@ -26,6 +26,7 @@ public class OldCommands implements MessageCreateListener {
         if (event.getMessageAuthor().isBotUser()) return;
 
         //Log user sent messages
+        /*
         if (!event.isPrivateMessage()) {
             System.out.println("[" + Main.time() + "]" + "(" +
                     event.getServer().get().getName() + " - #" +
@@ -43,6 +44,7 @@ public class OldCommands implements MessageCreateListener {
                     event.getMessage().getContent()
             );
         }
+        */
 
         //Custom commands
         switch (event.getMessageContent().toLowerCase()) {
@@ -76,7 +78,7 @@ public class OldCommands implements MessageCreateListener {
             case "!restart":
                 if(isAdmin(event)) {
                     event.getChannel().sendMessage("`Restarting Bot...`");
-                    ChatLog.logConsole("Bot Restarting");
+                    ChatLog.logConsole(event, "Bot Restarting");
                     ChatLog.logMessage("Bot Restarting");
                     try {
                         Thread.sleep(500);

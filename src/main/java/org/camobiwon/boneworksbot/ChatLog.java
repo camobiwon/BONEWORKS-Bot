@@ -22,18 +22,38 @@ class ChatLog {
         if (event.getMessageAuthor().isBotUser()) return;
 
         //Log to console / chat
-        logConsole();
+        logConsole(event);
         logCommand(event);
     }
 
     //Main log function
     static void log(MessageCreateEvent event, String message) {
-        logConsole(message);
+        logConsole(event, message);
         logCommand(event, message);
     }
 
     //Log messaging
-    static void logConsole(String text) {
+    static void logConsole(MessageCreateEvent event, String text) {
+        //Log user command messages
+        if (!event.isPrivateMessage()) {
+            System.out.println("[" + Main.time() + "]" + "(" +
+                    event.getServer().get().getName() + " - #" +
+                    event.getServerTextChannel().get().getName() + ") " +
+                    event.getMessageAuthor().getName() + "#" +
+                    event.getMessageAuthor().getDiscriminator().get() + ": " +
+                    //If file, grab URL, if not, send message
+                    (event.getMessageAttachments().isEmpty()?event.getMessage().getContent():"<FILE> " + event.getMessageAttachments().get(0).getUrl())
+            );
+        } else {
+            System.out.println("[" + Main.time() + "]" +
+                    "(Direct Message)" +
+                    event.getMessageAuthor().getName() + "#" +
+                    event.getMessageAuthor().getDiscriminator().get() + ": " +
+                    event.getMessage().getContent()
+            );
+        }
+
+        //Log response
         if(text == null || text.isEmpty()){
             System.out.println("[" + Main.time() + "]" + "(LOG) Response Sent");
         } else {
@@ -42,8 +62,8 @@ class ChatLog {
     }
 
     //Set log message to null by default
-    public static void logConsole() {
-        logConsole(null);
+    public static void logConsole(MessageCreateEvent event) {
+        logConsole(event, null);
     }
 
     //Default to normal command if empty
