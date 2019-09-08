@@ -11,6 +11,9 @@ public class ChatContains implements MessageCreateListener {
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
 
+        //If bot, don't respond
+        if (event.getMessageAuthor().isBotUser()) return;
+
         if (event.getMessageContent().toLowerCase().contains("bone work")) {
             try {
                 event.getMessage().addReaction(":BONEWORK:584986092990758914").get();
