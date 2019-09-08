@@ -25,56 +25,10 @@ public class OldCommands implements MessageCreateListener {
         //If bot, don't respond
         if (event.getMessageAuthor().isBotUser()) return;
 
-        //Log user sent messages
-        /*
-        if (!event.isPrivateMessage()) {
-            System.out.println("[" + Main.time() + "]" + "(" +
-                    event.getServer().get().getName() + " - #" +
-                    event.getServerTextChannel().get().getName() + ") " +
-                    event.getMessageAuthor().getName() + "#" +
-                    event.getMessageAuthor().getDiscriminator().get() + ": " +
-                    //If file, grab URL, if not, send message
-                    (event.getMessageAttachments().isEmpty()?event.getMessage().getContent():"<FILE> " + event.getMessageAttachments().get(0).getUrl())
-            );
-        } else {
-            System.out.println("[" + Main.time() + "]" +
-                    "(Direct Message)" +
-                    event.getMessageAuthor().getName() + "#" +
-                    event.getMessageAuthor().getDiscriminator().get() + ": " +
-                    event.getMessage().getContent()
-            );
-        }
-        */
-
         //Custom commands
         switch (event.getMessageContent().toLowerCase()) {
-            //Admin commands
-            /*
-            case "!shutdown":
-                if(event.getMessageAuthor().getId() == Main.getOwner()) {
-                    event.getChannel().sendMessage("`Shutting Down...`");
-                    ChatLog.logConsole("Bot Shutting Down");
-                    ChatLog.logMessage("Bot Shutting Down");
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    event.getApi().disconnect();
-                    try {
-                        Thread.sleep(5000);
-                        //Here we'll kill the BASH script that restarts the bot
-                        System.exit(0);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    event.getChannel().sendMessage("<:AlexNo:617150461127950357>");
-                    ChatLog.log(event);
-                }
-                break;
-                */
 
+            //Admin commands
             case "!restart":
                 if(isAdmin(event)) {
                     event.getChannel().sendMessage("`Restarting Bot...`");
