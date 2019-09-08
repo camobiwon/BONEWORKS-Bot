@@ -25,6 +25,16 @@ public class OldCommands implements MessageCreateListener {
         //If bot, don't respond
         if (event.getMessageAuthor().isBotUser()) return;
 
+        //Log DMs
+        if (event.isPrivateMessage()) {
+            System.out.println("[" + Main.time() + "]" +
+                    "(Direct Message)" +
+                    event.getMessageAuthor().getName() + "#" +
+                    event.getMessageAuthor().getDiscriminator().get() + ": " +
+                    event.getMessage().getContent()
+            );
+        }
+
         //Custom commands
         switch (event.getMessageContent().toLowerCase()) {
 

@@ -44,13 +44,6 @@ class ChatLog {
                     //If file, grab URL, if not, send message
                     (event.getMessageAttachments().isEmpty()?event.getMessage().getContent():"<FILE> " + event.getMessageAttachments().get(0).getUrl())
             );
-        } else {
-            System.out.println("[" + Main.time() + "]" +
-                    "(Direct Message)" +
-                    event.getMessageAuthor().getName() + "#" +
-                    event.getMessageAuthor().getDiscriminator().get() + ": " +
-                    event.getMessage().getContent()
-            );
         }
 
         //Log response
