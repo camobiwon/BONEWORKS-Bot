@@ -85,7 +85,6 @@ public class OldCommands implements MessageCreateListener {
                 ChatLog.log(event);
                 break;
 
-            case "blood and zombies?":
             case "blood and zombies":
                 event.getChannel().sendMessage("https://cdn.discordapp.com/attachments/617493833852256267/617638167432134656/unknown.png");
                 ChatLog.log(event);

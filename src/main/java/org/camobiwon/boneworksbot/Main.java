@@ -1,7 +1,6 @@
 package org.camobiwon.boneworksbot;
 
-import de.btobastian.sdcf4j.CommandHandler;
-import de.btobastian.sdcf4j.handler.JavacordHandler;
+import org.camobiwon.boneworksbot.secret.SecretCommands;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.server.Server;
@@ -48,13 +47,7 @@ public class Main {
 
     //Get server ID
     static Server getServer() {
-        long serverID = 563139253542846474L;
-        return api.getServerById(serverID).get();
-    }
-
-    //Get owner ID
-    static Long getOwner() {
-        return api.getOwnerId();
+        return api.getServerById(Configuration.serverID).get();
     }
 
     //Main call

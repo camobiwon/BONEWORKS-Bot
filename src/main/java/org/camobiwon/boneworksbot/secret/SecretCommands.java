@@ -1,5 +1,6 @@
-package org.camobiwon.boneworksbot;
+package org.camobiwon.boneworksbot.secret;
 
+import org.camobiwon.boneworksbot.ChatLog;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 

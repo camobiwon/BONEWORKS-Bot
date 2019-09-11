@@ -6,10 +6,9 @@ import org.javacord.api.event.message.MessageCreateEvent;
 
 import java.awt.*;
 
-class ChatLog {
+public class ChatLog {
 
     private static DiscordApi API;
-    private static Long logChannel = 618142868686635090L;
 
     //Initialize
     static void chatInit(DiscordApi api) {
@@ -17,7 +16,7 @@ class ChatLog {
     }
 
     //Default log function
-    static void log(MessageCreateEvent event) {
+    public static void log(MessageCreateEvent event) {
         //If bot, don't respond
         if (event.getMessageAuthor().isBotUser()) return;
 
@@ -81,7 +80,7 @@ class ChatLog {
                     .setAuthor(event.getMessageAuthor().getName() + "#" + event.getMessageAuthor().getDiscriminator().get(), "", event.getMessageAuthor().getAvatar())
                     .setColor(Color.GRAY)
                     .setFooter(event.getMessageContent(), "");
-            event.getApi().getTextChannelById(logChannel).get().sendMessage(embed);
+            event.getApi().getTextChannelById(Configuration.logChannel).get().sendMessage(embed);
         }
 
         //Bot response message
@@ -92,7 +91,7 @@ class ChatLog {
                     .setAuthor("Bot Response", "", API.getYourself().getAvatar())
                     .setColor(Color.BLUE)
                     .setFooter(message, "");
-            event.getApi().getTextChannelById(logChannel).get().sendMessage(embed);
+            event.getApi().getTextChannelById(Configuration.logChannel).get().sendMessage(embed);
         }
     }
 
@@ -110,6 +109,6 @@ class ChatLog {
                 .setDescription(Main.time() + " | PST")
                 .setAuthor("Bot Log", "", API.getYourself().getAvatar())
                 .setColor(Color.ORANGE);
-        Main.getServer().getTextChannelById(logChannel).get().sendMessage(embed);
+        Main.getServer().getTextChannelById(Configuration.logChannel).get().sendMessage(embed);
     }
 }
