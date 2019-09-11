@@ -10,16 +10,6 @@ import java.io.IOException;
 
 public class OldCommands implements MessageCreateListener {
 
-    //Check if user is admin
-    private boolean isAdmin(MessageCreateEvent event) {
-        boolean isAdmin = Main.adminIDs.contains((event.getMessageAuthor().getId()));
-        if (!isAdmin) {
-            event.getChannel().sendMessage("<:AlexNo:617150461127950357>");
-            ChatLog.log(event);
-        }
-        return isAdmin;
-    }
-
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
         //If bot, don't respond
@@ -40,7 +30,7 @@ public class OldCommands implements MessageCreateListener {
 
             //Admin commands
             case "!restart":
-                if(isAdmin(event)) {
+                if(CommandUtils.isAdmin(event)) {
                     event.getChannel().sendMessage("`Restarting Bot...`");
                     ChatLog.logConsole(event, "Bot Restarting");
                     ChatLog.logMessage("Bot Restarting");

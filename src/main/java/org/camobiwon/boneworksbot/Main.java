@@ -1,6 +1,7 @@
 package org.camobiwon.boneworksbot;
 
 import org.camobiwon.boneworksbot.secret.SecretCommands;
+import org.camobiwon.boneworksbot.secret.UserJoin;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.server.Server;
@@ -20,7 +21,7 @@ public class Main {
     //Variables
     private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yy hh:mm:ss a");
     private static Logger logger = LogManager.getLogger(Main.class);
-    static List<Long> adminIDs = new ArrayList<>();
+    public static List<Long> adminIDs = new ArrayList<>();
     private static DiscordApi api;
     private static ResourceLoader resourceLoader;
 
@@ -31,7 +32,7 @@ public class Main {
     }
 
     //Get admins from admin.txt file
-    private static void getAdmins() {
+    static void getAdmins() {
         String admins;
         try {
             admins = resourceLoader.getFileContent("admins.txt");
@@ -46,8 +47,8 @@ public class Main {
     }
 
     //Get server ID
-    static Server getServer() {
-        return api.getServerById(Configuration.serverID).get();
+    public static Server getServer() {
+        return getApi().getServerById(Configuration.serverID).get();
     }
 
     //Main call
@@ -72,15 +73,16 @@ public class Main {
 
             //Initialize
             System.out.println("Initializing logging...");
-            ChatLog.chatInit(api);
+            ChatLog.chatInit(getApi());
             FallbackLoggerConfiguration.setDebug(true);
             System.out.println("Logging initialized\n");
 
             //Listeners
             System.out.println("Setting listeners...");
-            api.addMessageCreateListener(new OldCommands());
-            api.addMessageCreateListener(new SecretCommands());
-            api.addMessageCreateListener(new ChatContains());
+            getApi().addMessageCreateListener(new OldCommands());
+            getApi().addMessageCreateListener(new SecretCommands());
+            getApi().addServerMemberJoinListener(new UserJoin());
+            getApi().addMessageCreateListener(new ChatContains());
             //CommandHandler cmdHandler = new JavacordHandler(api);
             //cmdHandler.registerCommand(new Commands());
             System.out.println("Listeners set\n");
@@ -91,11 +93,15 @@ public class Main {
             System.out.println("=====[ CONSOLE OUTPUT ]=====\n");
 
             //Log output if bot joins / leaves server
-            api.addServerJoinListener(event -> logger.info("Joined server " + event.getServer().getName()));
-            api.addServerLeaveListener(event -> logger.info("Left server " + event.getServer().getName()));
+            getApi().addServerJoinListener(event -> logger.info("Joined server " + event.getServer().getName()));
+            getApi().addServerLeaveListener(event -> logger.info("Left server " + event.getServer().getName()));
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("token.txt file not found / unreadable! (Make sure it's in src\\main\\resources)");
         }
+    }
+
+    public static DiscordApi getApi() {
+        return api;
     }
 }
