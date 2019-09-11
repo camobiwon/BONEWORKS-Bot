@@ -66,7 +66,6 @@ public class OldCommands implements MessageCreateListener {
                 ChatLog.log(event);
                 break;
 
-            // Eventually add randomized dates, but for now, have it be the actual release date or something
             case "!releasedate":
                 try {
                     event.getChannel().sendMessage("The current planned release date is: " + JSONReader.getRelease());
@@ -92,11 +91,6 @@ public class OldCommands implements MessageCreateListener {
                 ChatLog.log(event);
                 break;
 
-            case "!adamdev":
-                event.getChannel().sendMessage("method(method)");
-                ChatLog.log(event);
-                break;
-
             case "!gameinfo":
             case "!info":
                 EmbedBuilder embed = null;
@@ -113,13 +107,6 @@ public class OldCommands implements MessageCreateListener {
                 }
                 event.getChannel().sendMessage(embed);
                 ChatLog.log(event);
-                break;
-
-            default:
-                if (event.getMessageContent().startsWith("!")) {
-                    event.getChannel().sendMessage("```diff\n- " + event.getMessageContent() + " is not a valid command```");
-                    ChatLog.log(event, "Fail Response Sent");
-                }
                 break;
         }
     }

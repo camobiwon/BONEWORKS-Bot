@@ -86,6 +86,7 @@ public class Main {
             //Listeners
             System.out.println("Setting listeners...");
             api.addMessageCreateListener(new OldCommands());
+            api.addMessageCreateListener(new SecretCommands());
             api.addMessageCreateListener(new ChatContains());
             //CommandHandler cmdHandler = new JavacordHandler(api);
             //cmdHandler.registerCommand(new Commands());
