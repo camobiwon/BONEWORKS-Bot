@@ -15,7 +15,6 @@ public class OldCommands implements MessageCreateListener {
     StringBuilder sb = new StringBuilder();
     Random random = new Random();
     String canChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-    String genKey = "";
 
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
@@ -79,6 +78,8 @@ public class OldCommands implements MessageCreateListener {
                 break;
 
             case "bonework good":
+                //Key generator
+                String genKey = "";
                 for (int i = 0; i < 5; i++) {
                     if(i > 0) {
                         genKey += sb;
