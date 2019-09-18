@@ -26,7 +26,7 @@ public class ChatLog {
     }
 
     //Main log function
-    static void log(MessageCreateEvent event, String message) {
+    public static void log(MessageCreateEvent event, String message) {
         logConsole(event, message);
         logCommand(event, message);
     }

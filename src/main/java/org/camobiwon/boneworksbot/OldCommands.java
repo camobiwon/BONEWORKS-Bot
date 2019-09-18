@@ -7,11 +7,19 @@ import org.json.JSONException;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.Random;
 
 public class OldCommands implements MessageCreateListener {
 
+    //Setup fake key generator
+    StringBuilder sb = new StringBuilder();
+    Random random = new Random();
+    String canChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    String genKey = "";
+
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
+
         //If bot, don't respond
         if (event.getMessageAuthor().isBotUser()) return;
 
@@ -67,6 +75,22 @@ public class OldCommands implements MessageCreateListener {
             
             case "!melon":
                 event.getChannel().sendMessage("||f u c k i n g  i l l e g a l||");
+                ChatLog.log(event);
+                break;
+
+            case "bonework good":
+                for (int i = 0; i < 5; i++) {
+                    if(i > 0) {
+                        genKey += sb;
+                        genKey += "-";
+                    }
+                    sb.delete(0, 5);
+                    for (int ii = 0; ii < 5; ii++) {
+                        sb.append(canChars.charAt(random.nextInt(canChars.length())));
+                    }
+                }
+                genKey += sb;
+                event.getChannel().sendMessage("Glad we can all agree on something, here's a key for the game: " + genKey);
                 ChatLog.log(event);
                 break;
 

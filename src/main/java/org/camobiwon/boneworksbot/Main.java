@@ -89,8 +89,8 @@ public class Main {
 
             //Online messages
             ChatLog.logMessage("Bot Online");
-            System.out.println("Startup successful! Bot should now be online\n");
-            System.out.println("=====[ CONSOLE OUTPUT ]=====\n");
+            System.out.println("Startup successful! Bot should now be online - " + Main.time());
+            System.out.println("\n=====[ CONSOLE OUTPUT ]=====\n");
 
             //Log output if bot joins / leaves server
             getApi().addServerJoinListener(event -> logger.info("Joined server " + event.getServer().getName()));
