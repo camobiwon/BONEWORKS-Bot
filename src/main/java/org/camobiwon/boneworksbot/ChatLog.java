@@ -19,8 +19,6 @@ public class ChatLog {
     public static void log(MessageCreateEvent event) {
         //If bot, don't respond
         if (event.getMessageAuthor().isBotUser()) return;
-        //Don't log if message is not from source server
-        if (event.getServer().get().getId() != Configuration.serverID) return;
 
         //Log to console / chat
         logConsole(event);
@@ -67,6 +65,8 @@ public class ChatLog {
     private static void logCommand(MessageCreateEvent event, String message) {
         //If bot, don't respond
         if (event.getMessageAuthor().isBotUser()) return;
+        //Don't log if message is not from source server
+        if (event.getServer().get().getId() != Configuration.serverID) return;
 
         //Default message
         if (message == null || message.isEmpty()) {
