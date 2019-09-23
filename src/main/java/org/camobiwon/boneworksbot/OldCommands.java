@@ -58,12 +58,12 @@ public class OldCommands implements MessageCreateListener {
 
 
             //Standard commands
-            case "!alex":
+            case "alex":
                 event.getChannel().sendMessage(":regional_indicator_c::fish:");
                 ChatLog.log(event);
                 break;
 
-            case "!releasedate":
+            case "releasedate":
                 try {
                     event.getChannel().sendMessage("The current planned release date is: " + JSONReader.getRelease());
                 } catch (IOException | JSONException e) {
@@ -72,7 +72,7 @@ public class OldCommands implements MessageCreateListener {
                 ChatLog.log(event);
                 break;
             
-            case "!melon":
+            case "melon":
                 event.getChannel().sendMessage("||f u c k i n g  i l l e g a l||");
                 ChatLog.log(event);
                 break;
