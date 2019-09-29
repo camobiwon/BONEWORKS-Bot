@@ -2,12 +2,17 @@
 Bot for the BONEWORKS fan Discord server
 
 **Instructions to get the bot running**
+
+*Discord*
 - Create an application on [Discord's developer page](https://discordapp.com/developers/applications), and add a bot for that application
 - Add the bot to a server you own on Discord
+- Create a channel in your server for logging messages for the bot
+
+*IDE Setup*
 - Download the project, and make sure you import all required Gradle plugins
 - Add your bot's token into a file titled "token.txt", which you then put into src\main\resources
 - You can also add yours or others IDs to src\main\resources\admins.txt, just separate each with a comma
-
+- In Configuration.java, change the serverID and logChannel to match your own from your server
 - Create a new package in org.camobiwon.boneworksbot titled "secret"
 - Add 2 new classes to this package, one called "SecretCommands" the other called "UserJoin"
 - In SecretCommands, add "implements MessageCreateListener" and have the IDE add methods
