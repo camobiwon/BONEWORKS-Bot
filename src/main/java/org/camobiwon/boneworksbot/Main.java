@@ -94,10 +94,10 @@ public class Main {
             System.out.println("Status set\n");
 
             //Check Discord user activity
-            System.out.println("Checking activity... | Time: " + Main.time());
+            System.out.println("Checking activity...");
             int rolesAdded = DiscordActivity.checkPlayingNoRole();
             int rolesRemoved = DiscordActivity.checkRoleNotPlaying();
-            System.out.println("Activity checked | Time: " + Main.time() + " | Roles Added: " + rolesAdded + " | Roles Removed: " + rolesRemoved);
+            System.out.println("Activity checked | Roles Added: " + rolesAdded + " | Roles Removed: " + rolesRemoved);
 
             //Online messages
             ChatLog.logMessage("Bot Online");
