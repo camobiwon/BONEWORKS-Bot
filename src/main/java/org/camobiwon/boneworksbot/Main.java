@@ -83,13 +83,25 @@ public class Main {
             getApi().addMessageCreateListener(new SecretCommands());
             getApi().addServerMemberJoinListener(new UserJoin());
             getApi().addMessageCreateListener(new ChatContains());
+            getApi().addUserChangeActivityListener(new DiscordActivity());
             //CommandHandler cmdHandler = new JavacordHandler(api);
             //cmdHandler.registerCommand(new Commands());
             System.out.println("Listeners set\n");
 
+            //Set Status
+            System.out.println("Setting status...");
+            DiscordActivity.setBotStatus();
+            System.out.println("Status set\n");
+
+            //Check Discord user activity
+            System.out.println("Checking activity... | Time: " + Main.time());
+            int rolesAdded = DiscordActivity.checkPlayingNoRole();
+            int rolesRemoved = DiscordActivity.checkRoleNotPlaying();
+            System.out.println("Activity checked | Time: " + Main.time() + " | Roles Added: " + rolesAdded + " | Roles Removed: " + rolesRemoved);
+
             //Online messages
             ChatLog.logMessage("Bot Online");
-            System.out.println("Startup successful! Bot should now be online - " + Main.time());
+            System.out.println("\nStartup successful! Bot should now be online - " + Main.time());
             System.out.println("\n=====[ CONSOLE OUTPUT ]=====\n");
 
             //Log output if bot joins / leaves server

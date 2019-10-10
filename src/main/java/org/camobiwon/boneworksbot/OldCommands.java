@@ -1,5 +1,6 @@
 package org.camobiwon.boneworksbot;
 
+import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
@@ -60,6 +61,11 @@ public class OldCommands implements MessageCreateListener {
             //Standard commands
             case "alex":
                 event.getChannel().sendMessage(":regional_indicator_c::fish:");
+                ChatLog.log(event);
+                break;
+
+            case "!setstatus":
+                Main.getApi().updateActivity(ActivityType.PLAYING, "BONEWORKS");
                 ChatLog.log(event);
                 break;
 
