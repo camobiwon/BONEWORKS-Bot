@@ -25,13 +25,11 @@ public class DiscordActivity implements UserChangeActivityListener {
         //If user activity equals game, add role
         if(event.getNewActivity().isPresent() && event.getNewActivity().get().getType().equals(ActivityType.PLAYING) && event.getNewActivity().get().getName().equalsIgnoreCase(gameName)) {
             event.getUser().addRole(getRole());
-            System.out.println("Role added");
         }
 
         //If user activity now not equals game, remove role
         if(event.getOldActivity().isPresent() && event.getOldActivity().get().getType().equals(ActivityType.PLAYING) && event.getOldActivity().get().getName().equalsIgnoreCase(gameName)) {
             event.getUser().removeRole(getRole());
-            System.out.println("Role removed");
         }
     }
 
