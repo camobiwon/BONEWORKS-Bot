@@ -7,4 +7,7 @@ class Configuration {
 
     //ID of the text channel in the server that the bot will send log messages to
     static Long logChannel = 618142868686635090L;
+
+    //ID of the role you want to assign to in-game users
+    public static long roleID = 631729226281779221L;
 }

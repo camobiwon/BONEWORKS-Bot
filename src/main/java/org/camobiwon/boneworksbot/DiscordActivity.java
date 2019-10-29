@@ -63,8 +63,7 @@ public class DiscordActivity implements UserChangeActivityListener {
 
     private static Role getRole() {
         if(role == null) {
-            long roleID = 631729226281779221L;
-            Main.getServer().getRoleById(roleID).ifPresent(role -> {DiscordActivity.role = role;});
+            Main.getServer().getRoleById(Configuration.roleID).ifPresent(role -> {DiscordActivity.role = role;});
         }
         return role;
     }
