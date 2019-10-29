@@ -63,20 +63,6 @@ public class OldCommands implements MessageCreateListener {
                 event.getChannel().sendMessage(":regional_indicator_c::fish:");
                 ChatLog.log(event);
                 break;
-
-            case "!setstatus":
-                Main.getApi().updateActivity(ActivityType.PLAYING, "BONEWORKS");
-                ChatLog.log(event);
-                break;
-
-            case "releasedate":
-                try {
-                    event.getChannel().sendMessage("The current planned release date is: " + JSONReader.getRelease());
-                } catch (IOException | JSONException e) {
-                    e.printStackTrace();
-                }
-                ChatLog.log(event);
-                break;
             
             case "melon":
                 event.getChannel().sendMessage("||f u c k i n g  i l l e g a l||");
@@ -106,8 +92,12 @@ public class OldCommands implements MessageCreateListener {
                 ChatLog.log(event);
                 break;
 
-            case "blood and zombies":
-                event.getChannel().sendMessage("https://cdn.discordapp.com/attachments/617493833852256267/617638167432134656/unknown.png");
+            case "!releasedate":
+                try {
+                    event.getChannel().sendMessage("The current planned release date is: " + JSONReader.getRelease());
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
                 ChatLog.log(event);
                 break;
 

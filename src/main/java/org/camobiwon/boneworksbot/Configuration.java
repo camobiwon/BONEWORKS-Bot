@@ -9,5 +9,5 @@ class Configuration {
     static Long logChannel = 618142868686635090L;
 
     //ID of the role you want to assign to in-game users
-    public static long roleID = 631729226281779221L;
+    static long roleID = 631729226281779221L;
 }
