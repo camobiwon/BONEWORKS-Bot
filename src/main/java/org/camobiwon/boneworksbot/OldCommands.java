@@ -69,6 +69,11 @@ public class OldCommands implements MessageCreateListener {
                 ChatLog.log(event);
                 break;
 
+            case "stfu":
+                event.getChannel().sendMessage("https://www.youtube.com/watch?v=Bw0iinAnWvs");
+                ChatLog.log(event);
+                break;
+
             case "bonework good":
                 //Key generator
                 String genKey = "";

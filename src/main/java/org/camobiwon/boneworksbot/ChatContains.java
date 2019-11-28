@@ -31,5 +31,14 @@ public class ChatContains implements MessageCreateListener {
             }
             ChatLog.log(event, "Reaction Added");
         }
+
+        if (event.getMessageContent().toLowerCase().contains("leak")) {
+            try {
+                event.getMessage().addReaction(":Leak:649508571247017995").get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+            ChatLog.log(event, "Reaction Added");
+        }
     }
 }
