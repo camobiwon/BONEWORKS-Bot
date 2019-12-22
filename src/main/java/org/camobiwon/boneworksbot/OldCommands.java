@@ -97,15 +97,12 @@ public class OldCommands implements MessageCreateListener {
                 ChatLog.log(event);
                 break;
 
-            case "!releasedate":
-                try {
-                    event.getChannel().sendMessage("The current planned release date is: " + JSONReader.getRelease());
-                } catch (IOException | JSONException e) {
-                    e.printStackTrace();
-                }
+            case "alyx":
+                event.getChannel().sendMessage("While I understand and respect your opinion on Half-Life: Alyx, I must say that BONEWORKS is far superior. The latter incorporates cutting edge technology in to the virtual reality space and is much more focused on gameplay and creating believable interactions in a consistent world, HL:A is more so for those who have been waiting more of the story of Half-Life. The main showcase of this is floating hands being in HL:A and BONEWORKS having a full body. It's a bold move to help push VR further and innovate in the space, paving the way for future games to increase immersion. HL:A is Valve's main way to sell the Index, and yes, it may have a much more rich and grounded story than BONEWORKS but on a technical level the chance that the raw interactions will even come close is very slim. This is the BONEWORKS Discord, what the hell did you think you would get as a response?");
                 ChatLog.log(event);
                 break;
 
+            /*
             case "!gameinfo":
             case "!info":
                 EmbedBuilder embed = null;
@@ -123,6 +120,7 @@ public class OldCommands implements MessageCreateListener {
                 event.getChannel().sendMessage(embed);
                 ChatLog.log(event);
                 break;
+             */
         }
     }
 }

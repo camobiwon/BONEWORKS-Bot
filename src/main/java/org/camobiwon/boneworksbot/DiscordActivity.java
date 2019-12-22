@@ -2,13 +2,10 @@ package org.camobiwon.boneworksbot;
 
 import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.permission.Role;
-import org.javacord.api.entity.user.User;
-import org.javacord.api.event.user.UserChangeActivityEvent;
-import org.javacord.api.listener.user.UserChangeActivityListener;
 
 import java.util.stream.Collectors;
 
-public class DiscordActivity implements UserChangeActivityListener {
+public class DiscordActivity {
 
     private static String gameName = "boneworks";
     private static Role role = null;
@@ -17,6 +14,7 @@ public class DiscordActivity implements UserChangeActivityListener {
         Main.getApi().updateActivity(ActivityType.PLAYING, "BONEWORKS");
     }
 
+    /*
     @Override
     public void onUserChangeActivity(UserChangeActivityEvent event) {
         //If bot, return
@@ -67,4 +65,5 @@ public class DiscordActivity implements UserChangeActivityListener {
         }
         return role;
     }
+    */
 }
