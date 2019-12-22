@@ -14,6 +14,14 @@ public class ChatContains implements MessageCreateListener {
         //If bot, don't respond
         if (event.getMessageAuthor().isBotUser()) return;
 
+        if (event.getMessageAuthor().getId() == 271788139381653514) {
+            try {
+                event.getMessage().addReaction("🏳️‍🌈").get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
         if (event.getMessageContent().toLowerCase().contains("bone work")) {
             try {
                 event.getMessage().addReaction(":BONEWORK:584986092990758914").get();
