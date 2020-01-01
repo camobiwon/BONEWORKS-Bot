@@ -1,7 +1,5 @@
 package org.camobiwon.boneworksbot;
 
-import org.camobiwon.boneworksbot.secret.SecretCommands;
-import org.camobiwon.boneworksbot.secret.UserJoin;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.server.Server;
@@ -80,9 +78,8 @@ public class Main {
             //Listeners
             System.out.println("Setting listeners...");
             getApi().addMessageCreateListener(new OldCommands());
-            getApi().addMessageCreateListener(new SecretCommands());
-            getApi().addServerMemberJoinListener(new UserJoin());
             getApi().addMessageCreateListener(new ChatContains());
+            getApi().addMessageCreateListener(new Voting());
             //CommandHandler cmdHandler = new JavacordHandler(api);
             //cmdHandler.registerCommand(new Commands());
             System.out.println("Listeners set\n");
@@ -91,14 +88,6 @@ public class Main {
             System.out.println("Setting status...");
             DiscordActivity.setBotStatus();
             System.out.println("Status set\n");
-
-            /*
-            //Check Discord user activity
-            System.out.println("Checking activity...");
-            int rolesAdded = DiscordActivity.checkPlayingNoRole();
-            int rolesRemoved = DiscordActivity.checkRoleNotPlaying();
-            System.out.println("Activity checked | Roles Added: " + rolesAdded + " | Roles Removed: " + rolesRemoved);
-            */
 
             //Online messages
             ChatLog.logMessage("Bot Online");
